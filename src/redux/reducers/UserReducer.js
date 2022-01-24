@@ -1,4 +1,8 @@
-import { FETCH_USER, START_FETCH_USER } from "../actions/types/UserType";
+import {
+  FETCH_USER,
+  LOG_OUT,
+  START_FETCH_USER,
+} from "../actions/types/UserType";
 const userLocal = localStorage.getItem("user");
 const initState = {
   user: userLocal ? JSON.parse(userLocal) : userLocal,
@@ -17,7 +21,6 @@ export const UserReducer = (state = initState, action) => {
       if (succcess) {
         const { user } = action.response;
         const { accessToken, ...other } = user;
-        console.log(other);
         localStorage.setItem("user", JSON.stringify(other));
         localStorage.setItem("accessToken", accessToken);
         return {
@@ -28,6 +31,16 @@ export const UserReducer = (state = initState, action) => {
         };
       }
       return { ...state, isLoading: false, message: message };
+    }
+    case LOG_OUT: {
+      localStorage.removeItem("user");
+      localStorage.removeItem("accessToken");
+      return {
+        user: null,
+        isLoading: false,
+        message: "",
+        accessToken: "",
+      };
     }
     default:
       return { ...state, error: "Khong ton tai action", isLoading: false };

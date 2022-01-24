@@ -14,23 +14,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 const Login = () => {
-  useEffect(() => {
-    document.title = "Đăng nhập";
-  }, []);
   const dispatch = useDispatch();
   const { user, isLoading, message } = useSelector(
     (rootReducer) => rootReducer.UserReducer
   );
+
+  useEffect(() => {
+    document.title = "Đăng nhập";
+  }, []);
+
   const onFinish = (values = null) => {
     if (values) {
-      console.log(values);
-
       dispatch(loginAction(JSON.stringify(values)));
     }
   };
   const onFinishFailed = (errorInfo = null) => {
     console.log("Failed:", errorInfo);
   };
+
   if (user) {
     return <Redirect to="/" />;
   }

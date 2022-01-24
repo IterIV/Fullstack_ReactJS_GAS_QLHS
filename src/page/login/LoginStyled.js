@@ -30,6 +30,7 @@ export const LoginPanel = styled.div`
   img {
     width: 80px;
     height: 80px;
+    padding: 10px;
     object-fit: cover;
     border-radius: 50%;
     background-color: #eee;

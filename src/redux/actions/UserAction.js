@@ -1,5 +1,5 @@
 import { userServices } from "../../services/UserServices";
-import { FETCH_USER, START_FETCH_USER } from "./types/UserType";
+import { FETCH_USER, LOG_OUT, START_FETCH_USER } from "./types/UserType";
 
 export const loginAction = (user) => {
   return (dispatch) => {
@@ -14,3 +14,4 @@ export const loginAction = (user) => {
       });
   };
 };
+export const logoutAction = () => ({ type: LOG_OUT });
